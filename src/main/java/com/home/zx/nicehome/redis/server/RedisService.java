@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.util.StringUtils;
 
 import com.home.zx.nicehome.redis.cache.CachePut;
 
@@ -27,17 +28,15 @@ public class RedisService {
 	}
 	
 	public String sendOrder(){
-		
-		transcation.execute(new TransactionCallback<String>() {
+		String result=transcation.execute(new TransactionCallback<String>() {
 			@Override
 			public String doInTransaction(TransactionStatus status) {
-				
 				return null;
 			}
 		});
-		
-		
-		
+		if(!StringUtils.isEmpty(result)){
+			
+		}
 		return null;
 	}
 	
