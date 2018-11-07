@@ -1,43 +1,37 @@
 package com.home.zx.nicehome.redis.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-import org.springframework.transaction.support.TransactionTemplate;
-import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 
+import com.home.zx.nicehome.model.TickerModel;
 import com.home.zx.nicehome.redis.cache.CachePut;
 
 @Service
 public class RedisService {
 
 	@Autowired
-	private RedisTemplate<Object, Object> redisTemp;
-	
-	@Autowired(required=true)
-	private TransactionTemplate transcation;
+	private RestTemplate restTemplate;
 	
 	
 	@CachePut
-	public Object addUser(){
+	public TickerModel addUser(){
+		
 		
 		
 		return null;
 	}
 	
-	public String sendOrder(){
-		String result=transcation.execute(new TransactionCallback<String>() {
-			@Override
-			public String doInTransaction(TransactionStatus status) {
-				return null;
-			}
-		});
-		if(!StringUtils.isEmpty(result)){
-			
+	public String sendOrder(String url){
+		//ResponseEntity<TickerModel> model=restTemplate.getForEntity(url, TickerModel.class);
+		System.out.println("----------------子线程的开始了------"+System.currentTimeMillis());
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		return null;
+		System.out.println("----------------子线程的结束了------"+System.currentTimeMillis());
+		return "success";
 	}
 	
 }
