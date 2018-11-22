@@ -30,4 +30,10 @@ public class RedisController {
 		return able;
 	}
 
+	
+	@RequestMapping(value="/redis/write")
+	public String getRedisData(){
+		service.addData();
+		return "success";
+	}
 }
