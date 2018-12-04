@@ -11,6 +11,8 @@ public class NicehomeApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
+		
 	}
 
 }
