@@ -9,6 +9,4 @@ public class NicehomeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NicehomeApplication.class, args);
 	}
-	
-	
 }
