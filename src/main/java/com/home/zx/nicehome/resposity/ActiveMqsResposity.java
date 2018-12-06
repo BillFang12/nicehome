@@ -20,5 +20,10 @@ public class ActiveMqsResposity {
     public void send(Destination destination,String data) {
         this.jmsMessagingTemplate.convertAndSend(destination, data);
     }
+    
+    
+    public void send(Destination destination,Object obj){
+    	this.jmsMessagingTemplate.convertAndSend(destination, obj);
+    }
 	
 }

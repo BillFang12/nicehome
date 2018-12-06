@@ -39,6 +39,8 @@ public class NiceHomeController {
 		 Destination destination = new ActiveMQQueue("beyondLiQueueTest");
 		 try {
 			activeMqsResposity.send(destination, mapper.writeValueAsString(modle));
+			
+			activeMqsResposity.send(destination, modle);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
