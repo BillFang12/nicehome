@@ -47,4 +47,7 @@ public class NiceHomeController {
 		return "success";
 	}
 	
+	
+	
+	
 }

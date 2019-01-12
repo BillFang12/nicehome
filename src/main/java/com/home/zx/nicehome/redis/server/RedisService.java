@@ -4,10 +4,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.home.zx.nicehome.model.TickerModel;
 import com.home.zx.nicehome.redis.cache.CachePut;
@@ -16,8 +14,8 @@ import com.home.zx.nicehome.resposity.RedisResposity;
 @Service
 public class RedisService {
 
-	@Autowired
-	private RestTemplate restTemplate;
+	/*@Autowired
+	private RestTemplate restTemplate;*/
 	
 	@Autowired
 	private RedisResposity redisResposity;
@@ -25,7 +23,7 @@ public class RedisService {
 	
 	@CachePut
 	public TickerModel addUser(String url){
-		restTemplate.getForEntity(url, null, Arrays.array(""));
+		//restTemplate.getForEntity(url, null, Arrays.array(""));
 		
 		return null;
 	}

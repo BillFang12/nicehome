@@ -4,10 +4,10 @@ import javax.jms.MessageListener;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.boot.autoconfigure.session.SessionProperties.Redis;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 
 import com.home.zx.nicehome.listener.MqsListener;
@@ -24,6 +24,8 @@ public class MqsConfig {
 		container.setMessageListener(messageListener());
 		container.setSessionTransacted(false);
 		container.setConcurrency("10-15");
+		TaskExecutor taskExecutor=new SimpleAsyncTaskExecutor();
+		container.setTaskExecutor(taskExecutor);
 		return container;
 	}
 	
@@ -49,11 +51,11 @@ public class MqsConfig {
 		return cachingConnectionFactory;
 	}*/
 	
-	@Bean
+	/*@Bean
 	public RedisTemplate<Object, Object> redisTemplate(){
 		RedisTemplate<Object, Object> template=new RedisTemplate<>();
 		
 		return template;
-	}
+	}*/
 	
 }
