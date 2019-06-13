@@ -1,5 +1,12 @@
 package com.home.zx.nicehome.controller;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+
 import javax.jms.Destination;
 
 import org.apache.activemq.command.ActiveMQQueue;
@@ -47,7 +54,27 @@ public class NiceHomeController {
 		return "success";
 	}
 	
-	
+	@RequestMapping("/sendMessage")
+	public Callable<String> sendMeessage(){
+		Callable<String> taskCallable=new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(10000);
+				return "success";
+			}
+		};
+		FutureTask<String> task=new FutureTask<>(taskCallable);
+		ExecutorService server=Executors.newCachedThreadPool();
+		Future<Object> result=(Future<Object>) server.submit(task);
+		try {
+			result.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		return taskCallable;
+	}
 	
 	
 }
